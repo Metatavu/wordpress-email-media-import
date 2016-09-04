@@ -5,8 +5,8 @@ require_once("constants.php");
 require_once(ABSPATH . 'wp-admin/includes/admin.php');
 
 $options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
-$fooGalleryEnabled = $options['foogalleryEnabled'] == 'true';
 $fooGalleryId = $options['foogalleryGalleryId'];
+$fooGalleryEnabled = $fooGalleryId && $fooGalleryId != 'none';
 $mailgunKey = $options['mailgunKey'];
 
 if ($fooGalleryEnabled) {
@@ -106,7 +106,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	$attachmentId = downloadAsAttachment($mailgunKey, $subject, $bodyPlain, $attachmentUrl, $attachmentName, $attachmentSize, $attachmentType);
 	
 	if ($fooGalleryEnabled) {
-	attachToFooGallery($fooGalleryId, $attachmentId);
+	  if ($fooGalleryId == "default") {
+	  	$galleries = get_posts(array(
+	  	  'post_type' => 'foogallery', 
+	  	  'post_status' => 'publish',
+	  	  'suppress_filters' => true
+	  	));
+	  	
+	  	$fooGalleryId = $galleries[0]->ID;
+	  }
+		
+	  attachToFooGallery($fooGalleryId, $attachmentId);
 	}
   }
   

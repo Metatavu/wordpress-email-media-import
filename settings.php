@@ -38,9 +38,10 @@
   	add_settings_section('core', __('Mailgun Media Import Settings', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), null, MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE);
   	add_settings_field('mailgunKey', __('Mailgun API Key', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportMailgunKey', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
 
-  	add_settings_section('foogallery', __("Foo Gallery settings", MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), null, MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE);
-  	add_settings_field('foogalleryEnabled', __('Add images to Foo Gallery', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportFooGalleryEnabled', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'foogallery');
-  	add_settings_field('foogalleryGalleryId', __('Gallery Id', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportFooGalleryGalleryId', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'foogallery');
+  	if (is_plugin_active('foogallery/foogallery.php')) {
+      add_settings_section('foogallery', __("Foo Gallery settings", MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), null, MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE);
+      add_settings_field('foogalleryGalleryId', __('Add imported images into', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportFooGalleryGalleryId', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'foogallery');
+  	}
   }
 
   function mailgunMediaImportMailgunKey() {
@@ -55,8 +56,36 @@
   }
   
   function mailgunMediaImportFooGalleryGalleryId() {
+  	$galleries = get_posts(array('post_type' => 'foogallery',
+      'post_status' => 'publish',
+  	  'suppress_filters' => true
+  	));
+  	
   	$options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
-  	echo "<input id='fooGalleryId' min='1' name='" . MAILGUN_MEDIA_IMPORT_SETTINGS . "[fooGalleryId]' size='5' type='number' value='{$options['fooGalleryId']}' />";
+  	$galleryId = $options['foogalleryGalleryId'];
+  	$noneTitle = __('None', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN);
+  	
+  	if (count($galleries) > 0) {
+  	  $defaultTitle = __(sprintf("Default (%s)", $galleries[0]->post_title), MAILGUN_MEDIA_IMPORT_I18N_DOMAIN);
+  		
+      echo '<select id="foogalleryGalleryId" name="' . MAILGUN_MEDIA_IMPORT_SETTINGS . '[foogalleryGalleryId]">';
+      echo '<option value="none"' . ($galleryId == 'none' ? ' selected="selected"' : '') . '>' . $noneTitle . '</option>';
+      echo '<option value="default"' . ($galleryId == 'default' ? ' selected="selected"' : '') . '>' . $defaultTitle . '</option>';
+	  	
+  	  foreach ($galleries as $gallery) {
+	      if ($galleryId == $gallery->ID) {
+	        echo '<option value="' . $gallery->ID . '" selected="selected">' . $gallery->post_title . '</option>';
+	      } else {
+	  	    echo '<option value="' . $gallery->ID . '">' . $gallery->post_title . '</option>';	
+	      }
+	    }
+	  
+	    echo '</select>';
+  	} else {
+      echo '<select id="foogalleryGalleryId" disabled="disabled" name="' . MAILGUN_MEDIA_IMPORT_SETTINGS . '[foogalleryGalleryId]">';
+      echo '<option value="none">' . $noneTitle . '</option>';
+      echo '</select>';
+    }
   }
   
 ?>
