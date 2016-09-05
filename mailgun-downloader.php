@@ -41,7 +41,11 @@
   		
   	  $file = fopen($attachmentUrl, 'r', false, $context);
   	  try {
-  	  	return fread($file, $attachmentSize);
+  	  	$data = '';
+  	  	while (!feof($file)) {
+  	      $data .= fread($file, 4096);
+  	  	}
+  	  	return $data;
   	  } finally {
   	    fclose($file);
   	  }
