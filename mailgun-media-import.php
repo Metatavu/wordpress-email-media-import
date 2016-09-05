@@ -11,7 +11,13 @@ defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
 require_once("settings.php");
 
+add_action( 'init', 'mailgunMediaImportRegisterRewrite' );
 
-// TODO: Require foogallery
+function mailgunMediaImportRegisterRewrite() {
+  global $wp_rewrite;
+  $plugin_url = plugins_url('import.php', __FILE__);
+  $wp_rewrite->add_external_rule('mailgun-media-import.php$', $plugin_url);
+  $wp_rewrite->flush_rules();
+}
 
 ?>
