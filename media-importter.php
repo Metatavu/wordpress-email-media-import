@@ -20,7 +20,8 @@
   	    'post_mime_type' => $type,
   	    'post_title' => $title,
   	    'post_content' => $description,
-     	'post_status' => 'inherit'
+     	'post_status' => 'inherit',
+  	  	'post_excerpt' => $title
   	  );
   	  
   	  $attachmentId = wp_insert_attachment($attachment, $imagePath);
