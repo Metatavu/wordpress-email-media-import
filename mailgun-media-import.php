@@ -3,7 +3,7 @@
   Created on Sep 3, 2016
   Plugin Name: Mailgun Media Import
   Description: Plugin for importing attachments into media library
-  Version: 0.2
+  Version: 0.3
   Author: Antti Leppä / Metatavu Oy
 */
 
@@ -12,17 +12,24 @@ defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 require_once(ABSPATH . 'wp-admin/includes/admin.php');
 require_once(ABSPATH . 'wp-includes/user.php');
 require_once(ABSPATH . 'wp-includes/pluggable.php');
+require_once(ABSPATH . 'wp-includes/media.php');
+require_once(ABSPATH . 'wp-includes/functions.php');
 
 require_once("settings.php");
 require_once("mailgun-downloader.php");
 require_once("foogallery-importter.php");
 require_once("media-importter.php");
+require_once("image-editor.php");
 
 $path = $_SERVER['REQUEST_URI'];
 
 if (($path == "/mailgun-media-import") && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
-  wp_set_current_user(0);
+  // TODO: These should be configurable
 	
+  wp_set_current_user(0);
+  $maxWidth = 1280;
+  $maxHeight = 1280;
+  
   $timestamp = $_POST['timestamp'];
   $token = $_POST['token'];
   $signature = $_POST['signature'];
@@ -64,7 +71,12 @@ if (($path == "/mailgun-media-import") && ($_SERVER['REQUEST_METHOD'] == 'POST')
   	die;
   }
   
-  $importtedImageId = $mediaImportter->createImage($downloaded['name'], $downloaded['data'], $downloaded['contentType'], $subject, $bodyPlain);
+  $imageEditor = new ImageEditor($downloaded);
+  $imageEditor->fixOrientation();
+  $imageEditor->scaleImage($maxWidth, $maxHeight);
+  $saved = $imageEditor->save();
+  
+  $importtedImageId = $mediaImportter->createImage($saved, $subject, $bodyPlain);
   if (!isset($importtedImageId)) {
   	error_log("Could not import image");
   	echo "Could not import image";
