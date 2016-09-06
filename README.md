@@ -12,3 +12,8 @@ Key Features:
   * Supports automatic orientation fixing 
   * Supports automatic scaling
   * Supports adding uploaded images into Foo Gallery
+  
+## Installation
+
+  * Upload folder into /wp-content/plugins -directory
+  * Activate the plugin in 'Plugins' menu
