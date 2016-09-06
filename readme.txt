@@ -4,10 +4,7 @@ Tags: mailgun, media, email
 Requires at least: 4.6
 Tested up to: 4.6
 Stable tag: 0.0.3
-License: LGPLv3 or later
-License URI: https://www.gnu.org/licenses/lgpl-3.0.html
-
-Here is a short description of the plugin.  This should be no more than 150 characters.  No markup here.
+License: GPLv2 or later.
 
 == Description ==
 
