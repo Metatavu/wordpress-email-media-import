@@ -37,7 +37,10 @@
   	register_setting(MAILGUN_MEDIA_IMPORT_SETTINGS_GROUP, MAILGUN_MEDIA_IMPORT_SETTINGS);
   	add_settings_section('core', __('Mailgun Media Import Settings', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), null, MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE);
   	add_settings_field('mailgunKey', __('Mailgun API Key', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportMailgunKey', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
-
+  	add_settings_field('maxWidth', __('Max image width', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportMaxWidth', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
+  	add_settings_field('maxHeight', __('Max image height', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportMaxHeight', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
+  	add_settings_field('importUser', __('Importing user id', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportImportUser', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
+  	 
   	if (is_plugin_active('foogallery/foogallery.php')) {
       add_settings_section('foogallery', __("Foo Gallery settings", MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), null, MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE);
       add_settings_field('foogalleryGalleryId', __('Add imported images into', MAILGUN_MEDIA_IMPORT_I18N_DOMAIN), 'mailgunMediaImportFooGalleryGalleryId', MAILGUN_MEDIA_IMPORT_SETTINGS_PAGE, 'foogallery');
@@ -49,6 +52,21 @@
   	echo "<input id='mailgunKey' name='" . MAILGUN_MEDIA_IMPORT_SETTINGS . "[mailgunKey]' size='42' type='text' value='{$options['mailgunKey']}' />";
   }
 
+  function mailgunMediaImportMaxWidth() {
+  	$options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='maxWidth' name='" . MAILGUN_MEDIA_IMPORT_SETTINGS . "[maxWidth]' size='8' type='number' value='{$options['maxWidth']}' />";
+  }
+
+  function mailgunMediaImportMaxHeight() {
+  	$options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='maxHeight' name='" . MAILGUN_MEDIA_IMPORT_SETTINGS . "[maxHeight]' size='8' type='number' value='{$options['maxHeight']}' />";
+  }
+
+  function mailgunMediaImportImportUser() {
+  	$options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='importUser' name='" . MAILGUN_MEDIA_IMPORT_SETTINGS . "[importUser]' size='8' type='number' value='{$options['importUser']}' />";
+  }
+  
   function mailgunMediaImportFooGalleryEnabled() {
   	$options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
   	$checked = $options['foogalleryEnabled'] == 'true' ? 'checked' : '';

@@ -24,11 +24,11 @@ require_once("image-editor.php");
 $path = $_SERVER['REQUEST_URI'];
 
 if (($path == "/mailgun-media-import") && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
-  // TODO: These should be configurable
+  $options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
 	
-  wp_set_current_user(0);
-  $maxWidth = 1280;
-  $maxHeight = 1280;
+  wp_set_current_user($options && $options['importUser'] ? $options['importUser'] : 0);
+  $maxWidth = $options && $options['maxWidth'] ? $options['maxWidth'] : 1280;
+  $maxHeight = $options && $options['maxHeight'] ? $options['maxHeight'] : 1280;
   
   $timestamp = $_POST['timestamp'];
   $token = $_POST['token'];
