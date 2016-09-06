@@ -17,3 +17,4 @@ Key Features:
 
   * Upload folder into /wp-content/plugins -directory
   * Activate the plugin in 'Plugins' menu
+  * Change 'Mailgun API Key' to match your Mailgun's private key in Mailgun Media Import Settings
