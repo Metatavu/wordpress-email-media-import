@@ -1,2 +1,14 @@
 # wordpress-mailgun-media-import
-Wordpress plugin for importing media via Mailgun routes
+
+wordpress-mailgun-media-import plugin allows users to upload images into Wordpress Media Gallery by sending emails into specific email address.
+
+Plugin does this by utilizing Mailgun's (http://www.mailgun.com/) routes (https://documentation.mailgun.com/api-routes.html) feature.
+
+Plugin also supports adding uploaded images to be added into Foo Gallery (https://wordpress.org/plugins/foogallery/) if the the Foo Gallery plugin is active in the installation.
+
+Key Features:
+
+  * Allows users to upload image via e-mail
+  * Supports automatic orientation fixing 
+  * Supports automatic scaling
+  * Supports adding uploaded images into Foo Gallery
