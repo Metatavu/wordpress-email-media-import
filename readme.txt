@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Email Media Import ===
 Contributors: metatavu
 Tags: mailgun, media, email
 Requires at least: 4.6
@@ -8,7 +8,7 @@ License: GPLv2 or later.
 
 == Description ==
 
-wordpress-mailgun-media-import plugin allows users to upload images into Wordpress Media Gallery by sending emails into specific email address.
+wordpress-email-media-import plugin allows users to upload images into Wordpress Media Gallery by sending emails into specific email address.
 
 Plugin does this by utilizing Mailgun's (http://www.mailgun.com/) routes (https://documentation.mailgun.com/api-routes.html) feature.
 
@@ -29,6 +29,9 @@ Key Features:
   * Create new route in Mailgun administration panel, check the "store and notify" box and type in https://www.mywordpress.com/mailgun-media-import as notification address
 
 == Changelog ==
+
+= 0.4 =
+* Renamed plugin into Email media plugin
 
 = 0.3 =
 * Support for autoscaling images
