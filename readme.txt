@@ -30,6 +30,9 @@ Key Features:
 
 == Changelog ==
 
+= 0.5 =
+* Refactored to use shortcodes instead of path override
+
 = 0.4 =
 * Renamed plugin into Email media plugin
 
