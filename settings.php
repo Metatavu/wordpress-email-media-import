@@ -40,11 +40,6 @@
   	add_settings_field('maxWidth', __('Max image width', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportMaxWidth', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
   	add_settings_field('maxHeight', __('Max image height', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportMaxHeight', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
   	add_settings_field('importUser', __('Importing user id', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportImportUser', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
-  	 
-  	if (is_plugin_active('foogallery/foogallery.php')) {
-      add_settings_section('foogallery', __("Foo Gallery settings", EMAIL_MEDIA_IMPORT_I18N_DOMAIN), null, EMAIL_MEDIA_IMPORT_SETTINGS_PAGE);
-      add_settings_field('foogalleryGalleryId', __('Add imported images into', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportFooGalleryGalleryId', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'foogallery');
-  	}
   }
 
   function emailMediaImportMailgunKey() {
@@ -65,45 +60,6 @@
   function emailMediaImportImportUser() {
   	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
   	echo "<input id='importUser' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[importUser]' size='8' type='number' value='{$options['importUser']}' />";
-  }
-  
-  function emailMediaImportFooGalleryEnabled() {
-  	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
-  	$checked = $options['foogalleryEnabled'] == 'true' ? 'checked' : '';
-  	echo "<input id='foogalleryEnabled' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[foogalleryEnabled]' value='true' type='checkbox' $checked/>";
-  }
-  
-  function emailMediaImportFooGalleryGalleryId() {
-  	$galleries = get_posts(array('post_type' => 'foogallery',
-      'post_status' => 'publish',
-  	  'suppress_filters' => true
-  	));
-  	
-  	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
-  	$galleryId = $options['foogalleryGalleryId'];
-  	$noneTitle = __('None', EMAIL_MEDIA_IMPORT_I18N_DOMAIN);
-  	
-  	if (count($galleries) > 0) {
-  	  $defaultTitle = __(sprintf("Default (%s)", $galleries[0]->post_title), EMAIL_MEDIA_IMPORT_I18N_DOMAIN);
-  		
-      echo '<select id="foogalleryGalleryId" name="' . EMAIL_MEDIA_IMPORT_SETTINGS . '[foogalleryGalleryId]">';
-      echo '<option value="none"' . ($galleryId == 'none' ? ' selected="selected"' : '') . '>' . $noneTitle . '</option>';
-      echo '<option value="default"' . ($galleryId == 'default' ? ' selected="selected"' : '') . '>' . $defaultTitle . '</option>';
-	  	
-  	  foreach ($galleries as $gallery) {
-	      if ($galleryId == $gallery->ID) {
-	        echo '<option value="' . $gallery->ID . '" selected="selected">' . $gallery->post_title . '</option>';
-	      } else {
-	  	    echo '<option value="' . $gallery->ID . '">' . $gallery->post_title . '</option>';	
-	      }
-	    }
-	  
-	    echo '</select>';
-  	} else {
-      echo '<select id="foogalleryGalleryId" disabled="disabled" name="' . EMAIL_MEDIA_IMPORT_SETTINGS . '[foogalleryGalleryId]">';
-      echo '<option value="none">' . $noneTitle . '</option>';
-      echo '</select>';
-    }
   }
   
 ?>

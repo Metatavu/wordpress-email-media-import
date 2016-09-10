@@ -9,23 +9,9 @@
   
   class FooGalleryImporter {
   	
-  	private $galleryId;
   	private $enabled;
   	
   	public function __construct() {
-  	  $options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
-      $this->galleryId = $options['foogalleryGalleryId'];
-      $this->enabled = $this->galleryId && $this->galleryId != 'none';
-      
-      if ($this->enabled && $this->galleryId == "default") {
-      	$galleries = get_posts(array(
-      	  'post_type' => 'foogallery',
-      	  'post_status' => 'publish',
-      	  'suppress_filters' => true
-      	));
-      	
-      	$this->galleryId = $galleries[0]->ID;
-      }
   	}
   	
   	function isEnabled() {
@@ -36,15 +22,15 @@
       return false;
   	}
   	
-  	function importImage($attachmentId) {
-  	  $attachmentIds = get_post_meta($this->galleryId, FOOGALLERY_META_ATTACHMENTS, true );
+  	function importImage($galleryId, $attachmentId) {
+  	  $attachmentIds = get_post_meta($galleryId, FOOGALLERY_META_ATTACHMENTS, true );
   	  if (empty($attachmentIds)) {
   	    $attachmentIds = array();
   	  }	
   	  
   	  $attachmentIds[] = $attachmentId;
   	  
-  	  update_post_meta($this->galleryId, FOOGALLERY_META_ATTACHMENTS, $attachmentIds);
+  	  update_post_meta($galleryId, FOOGALLERY_META_ATTACHMENTS, $attachmentIds);
   	}
   	
   }
