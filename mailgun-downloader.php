@@ -8,7 +8,7 @@
   	private $mailgunKey;
   	
   	public function __construct() {
-  	  $options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
+  	  $options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
       $this->mailgunKey = $options['mailgunKey'];
   	}
   	

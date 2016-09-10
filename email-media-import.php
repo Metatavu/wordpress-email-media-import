@@ -1,9 +1,9 @@
 <?php
 /*
   Created on Sep 3, 2016
-  Plugin Name: Mailgun Media Import
-  Description: Plugin for importing attachments into media library
-  Version: 0.3
+  Plugin Name: Email Media Import
+  Description: Plugin for importing media via email
+  Version: 0.4
   Author: Antti Leppä / Metatavu Oy
 */
 
@@ -24,7 +24,7 @@ require_once("image-editor.php");
 $path = $_SERVER['REQUEST_URI'];
 
 if (($path == "/mailgun-media-import") && ($_SERVER['REQUEST_METHOD'] == 'POST')) {
-  $options = get_option(MAILGUN_MEDIA_IMPORT_SETTINGS);
+  $options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
 	
   wp_set_current_user($options && $options['importUser'] ? $options['importUser'] : 0);
   $maxWidth = $options && $options['maxWidth'] ? $options['maxWidth'] : 1280;
