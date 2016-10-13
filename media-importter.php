@@ -1,4 +1,6 @@
 <?php
+  namespace Metatavu\EmailMediaImport;
+
   defined( 'ABSPATH' ) || die( 'No script kiddies please!' );
 
   require_once("constants.php");

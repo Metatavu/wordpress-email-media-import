@@ -3,7 +3,7 @@
   Created on Sep 3, 2016
   Plugin Name: Email Media Import
   Description: Plugin for importing media via email
-  Version: 0.5
+  Version: 0.6
   Author: Antti Leppä / Metatavu Oy
 */
 
@@ -46,9 +46,9 @@ function emailMediaImportShortCode($attrs) {
       die;
     }
     
-    $mailgunDownlader = new MailgunDownloader();
-    $mediaImportter = new MediaImportter();
-    $fooGalleryImporter = new FooGalleryImporter();
+    $mailgunDownlader = new Metatavu\EmailMediaImport\MailgunDownloader();
+    $mediaImportter = new Metatavu\EmailMediaImport\MediaImportter();
+    $fooGalleryImporter = new Metatavu\EmailMediaImport\FooGalleryImporter();
 
     if (!$mailgunDownlader->checkSignature($timestamp, $signature, $token)) {
       error_log("$signature does not match");
@@ -76,7 +76,7 @@ function emailMediaImportShortCode($attrs) {
       die;
     }
 
-    $imageEditor = new ImageEditor($downloaded);
+    $imageEditor = new Metatavu\EmailMediaImport\ImageEditor($downloaded);
     $imageEditor->fixOrientation();
     $imageEditor->scaleImage($maxWidth, $maxHeight);
     $saved = $imageEditor->save();
