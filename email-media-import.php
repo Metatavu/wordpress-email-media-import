@@ -60,11 +60,10 @@ function emailMediaImportShortCode($attrs) {
       die;
     }
     
-    // Check that attachments is an non zero-length array
+    // Check that attachments are present
 
     $attachments = $_POST['attachments'];
-
-    if (!isset($attachments) || !is_array($attachments)) {
+    if (!isset($attachments)) {
       error_log("Attachments could not be found from the request body");
       echo "Attachments could not be found from the request body";
       http_response_code(400);
