@@ -39,9 +39,9 @@ function emailMediaImportShortCode($attrs) {
     
     // Validate that timestamp, token and signature are present and in correct format
     
-    $timestamp = $_POST['timestamp'];
-    $token = $_POST['token'];
-    $signature = $_POST['signature'];
+    $timestamp = sanitize_text_field($_POST['timestamp']);
+    $token = sanitize_text_field($_POST['token']);
+    $signature = sanitize_text_field($_POST['signature']);
     
     if (empty($timestamp) || empty($token) || empty($signature) || !is_numeric($timestamp)) {
       error_log("Timestamp, token or signature invalid or missing");
@@ -62,7 +62,7 @@ function emailMediaImportShortCode($attrs) {
     
     // Check that attachments are present
 
-    $attachments = $_POST['attachments'];
+    $attachments = sanitize_text_field($_POST['attachments']);
     if (!isset($attachments)) {
       error_log("Attachments could not be found from the request body");
       echo "Attachments could not be found from the request body";
@@ -87,10 +87,10 @@ function emailMediaImportShortCode($attrs) {
     $imageEditor->scaleImage($maxWidth, $maxHeight);
     $saved = $imageEditor->save();
     
-    // Subject and body may be empty, so no validation is needed
+    // Subject and body may be empty but they should not contain any html
     
-    $subject = $_POST['subject'];
-    $bodyPlain = $_POST['body-plain'];
+    $subject = sanitize_text_field($_POST['subject']);
+    $bodyPlain = sanitize_text_field($_POST['body-plain']);
     
     // Import media into media library
 
