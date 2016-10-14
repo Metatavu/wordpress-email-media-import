@@ -4,12 +4,8 @@
   if (!defined('ABSPATH')) { 
     exit;
   }
-
-  require_once("constants.php");
   
-  if (is_plugin_active('foogallery/foogallery.php')) {
-    require_once(ABSPATH . 'wp-content/plugins/foogallery/includes/constants.php');
-  }
+  require_once("constants.php");
   
   class FooGalleryImporter {
   	
@@ -27,14 +23,14 @@
   	}
   	
   	function importImage($galleryId, $attachmentId) {
-  	  $attachmentIds = get_post_meta($galleryId, FOOGALLERY_META_ATTACHMENTS, true );
+  	  $attachmentIds = get_post_meta($galleryId, 'foogallery_attachments', true );
   	  if (empty($attachmentIds)) {
   	    $attachmentIds = array();
   	  }	
   	  
   	  $attachmentIds[] = $attachmentId;
   	  
-  	  update_post_meta($galleryId, FOOGALLERY_META_ATTACHMENTS, $attachmentIds);
+  	  update_post_meta($galleryId, 'foogallery_attachments', $attachmentIds);
   	}
   	
   }
