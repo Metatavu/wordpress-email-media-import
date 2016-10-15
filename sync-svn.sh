@@ -3,8 +3,10 @@
 # Git -> Subversion synchronization script.  
 #
 # Can be used to synchronize Git develop with the SVN repository trunk
+# This script is greatly inspired by scripts from https://github.com/kasparsd/wp-deploy
 # 
 # Usage: sh sync-svn.sh
+#
 
 git checkout develop
 git pull
@@ -14,7 +16,12 @@ cd svn/trunk
 svn up
 popd
 
-rsync --recursive --exclude='.*' --exclude='.git' --exclude='tests' --exclude="composer.json" --exclude='sync-svn.sh' --exclude='releasen.sh' --exclude='svn' --exclude="wp" --exclude="vendor" . svn/trunk
+rsync --recursive --exclude='.*' --exclude='.git' --exclude='tests' --exclude='svn' --exclude="wp" --exclude="vendor" . svn/trunk
+
+for file in $(cat ".svnignore" 2> /dev/null)
+do
+  rm -rf svn/trunk/$file
+done
 
 pushd .
 cd svn/trunk
