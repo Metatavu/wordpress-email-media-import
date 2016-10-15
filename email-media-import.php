@@ -22,7 +22,8 @@ require_once("mailgun-downloader.php");
 require_once("foogallery-importter.php");
 require_once("media-importter.php");
 require_once("image-editor.php");
-
+require_once("text-processor.php");
+  
 function emailMediaImportShortCode($attrs) {
   if ($_SERVER['REQUEST_METHOD'] != 'POST') {
   	echo "Invalid request method " . $_SERVER['REQUEST_METHOD'];
@@ -89,13 +90,13 @@ function emailMediaImportShortCode($attrs) {
     
     // Subject and body may be empty but they should not contain any html
     
-    $subject = sanitize_text_field($_POST['subject']);
     $bodyPlain = sanitize_text_field($_POST['body-plain']);
+    $textProcessor = new Metatavu\EmailMediaImport\TextProcessor($bodyPlain, "title", "description");
     
     // Import media into media library
 
     $mediaImportter = new Metatavu\EmailMediaImport\MediaImportter();
-    $importtedImageId = $mediaImportter->createImage($saved, $subject, $bodyPlain);
+    $importtedImageId = $mediaImportter->createImage($saved, $textProcessor->getTitle(), $textProcessor->getDescription());
     if (!isset($importtedImageId)) {
       error_log("Could not import image");
       echo "Could not import image";
