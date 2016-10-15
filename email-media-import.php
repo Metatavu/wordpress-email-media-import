@@ -3,7 +3,7 @@
   Created on Sep 3, 2016
   Plugin Name: Email Media Import
   Description: Plugin for importing media via email
-  Version: 0.6
+  Version: 0.7
   Author: Antti Leppä / Metatavu Oy
 */
 
@@ -37,6 +37,8 @@ function emailMediaImportShortCode($attrs) {
     wp_set_current_user($options && $options['importUser'] ? $options['importUser'] : 0);
     $maxWidth = $options && $options['maxWidth'] ? $options['maxWidth'] : 1280;
     $maxHeight = $options && $options['maxHeight'] ? $options['maxHeight'] : 1280;
+    $titleTag = $options && $options['titleTag'] ? $options['titleTag'] : 'title';
+    $descriptionTag = $options && $options['descriptionTag'] ? $options['descriptionTag'] : 'description';
     
     // Validate that timestamp, token and signature are present and in correct format
     
@@ -91,7 +93,7 @@ function emailMediaImportShortCode($attrs) {
     // Subject and body may be empty but they should not contain any html
     
     $bodyPlain = sanitize_text_field($_POST['body-plain']);
-    $textProcessor = new Metatavu\EmailMediaImport\TextProcessor($bodyPlain, "title", "description");
+    $textProcessor = new Metatavu\EmailMediaImport\TextProcessor($bodyPlain, $titleTag, $descriptionTag);
     
     // Import media into media library
 

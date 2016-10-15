@@ -42,6 +42,9 @@
   	add_settings_field('maxWidth', __('Max image width', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportMaxWidth', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
   	add_settings_field('maxHeight', __('Max image height', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportMaxHeight', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
   	add_settings_field('importUser', __('Importing user id', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportImportUser', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'core');
+  	add_settings_section('tags', __('Email Media Tag Settings', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), null, EMAIL_MEDIA_IMPORT_SETTINGS_PAGE);
+  	add_settings_field('titleTag', __('Title tag', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportTitleTag', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'tags');
+  	add_settings_field('descriptionTag', __('Description tag', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportDescriptionTag', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'tags');
   }
 
   function emailMediaImportMailgunKey() {
@@ -62,6 +65,16 @@
   function emailMediaImportImportUser() {
   	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
   	echo "<input id='importUser' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[importUser]' size='8' type='number' value='{$options['importUser']}' />";
+  }
+
+  function emailMediaImportTitleTag() {
+  	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='titleTag' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[titleTag]' size='42' type='text' value='{$options['titleTag']}' placeholder='title'/>";
+  }
+
+  function emailMediaImportDescriptionTag() {
+  	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='descriptionTag' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[descriptionTag]' size='42' type='text' value='{$options['descriptionTag']}' placeholder='description'/>";
   }
   
 ?>
