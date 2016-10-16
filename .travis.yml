@@ -22,4 +22,4 @@ env:
 before_script:
   - bash travis/before-script.sh
 
-script: phpunit
+script: echo "Run tests"

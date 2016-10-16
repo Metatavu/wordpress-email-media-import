@@ -20,4 +20,8 @@ cd /tmp/www
 /tmp/wp core install --url=http://localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com
 
 # Just test
+echo "Curling /"
 curl http://localhost:8080
+
+echo "Curling /wp-admin"
+curl http://localhost:8080/wp-admin
