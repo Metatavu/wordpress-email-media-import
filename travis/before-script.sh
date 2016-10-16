@@ -12,10 +12,10 @@ curl -sS -o /tmp/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/pha
 php-fpm --fpm-config $BASE/travis/php-fmt.conf
 
 # Setup nginx
+mkdir /tmp/www
 nginx -c $BASE/travis/nginx.conf
 
 # Setup wp
-mkdir /tmp/www
 cd /tmp/www
 /tmp/wp core download
 /tmp/wp core config --dbname=www --dbuser=root
@@ -24,6 +24,9 @@ ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 
 # Just test
+
+echo 'ls'
+ls /tmp/www
 
 echo "Curling /"
 curl http://localhost:8080
