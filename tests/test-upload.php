@@ -23,25 +23,16 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	function testUpload() {
 	  $wpClient = new WpClient(new GuzzleAdapter(new GuzzleHttp\Client()), 'http://localhost:8080');
 	  $wpClient->setCredentials(new WpBasicAuth('admin', 'password'));
-	  $user = $wpClient->users()->get(1);
-	  var_dump($user);
-		/**
-		
-	  $pageId = $this->factory->post->create(array(
+	  $post = $wpClient->posts()->save(array(
         'post-type' => 'page',
 	    'post_title' => 'import',
 	    'post_content' => '[email_media_import]',
 	    'post_status' => 'published'
 	  ));
-		
-	  $this->assertNotNull($pageId);
 	  
-	  var_dump($this->factory->post->get_object_by_id($pageId));
+	  var_dump($post);
 	  
-		// $_POST = $this->createPostRequestData("ruumis", "123", "123", "123", "image/png", "http://fake.example.com/file.png", 12345);
-		// var_dump($_POST);
-		 *
-		 */
+	  $this->assertNotNull($post);
 	}
 	
 	function getRequest($url) {
