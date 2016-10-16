@@ -1,5 +1,6 @@
 <?php
 
+use Vnn\WpApiClient\Auth\WpBasicAuth;
 use Vnn\WpApiClient\Http\GuzzleAdapter;
 use Vnn\WpApiClient\WpClient;
 
@@ -21,6 +22,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 */
 	function testUpload() {
 	  $wpClient = new WpClient(new GuzzleAdapter(new GuzzleHttp\Client()), 'http://localhost:8080');
+	  $wpClient->setCredentials(new WpBasicAuth('admin', 'password'));
 	  $user = $wpClient->users()->get(1);
 	  var_dump($user);
 		/**
