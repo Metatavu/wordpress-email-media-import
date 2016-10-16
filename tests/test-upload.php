@@ -1,7 +1,6 @@
 <?php
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Uri;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -21,7 +20,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 */
 	function testUpload() {
       $client = new GuzzleHttp\Client();
-	  $response = $client->request('POST', "http://localhost/wp-json/wp/v2/posts", [
+	  $response = $client->request('POST', "http://localhost:8080/wp-json/wp/v2/posts", [
 	    'json' => [
           'type' => 'page',
 	      'title' => 'import',
