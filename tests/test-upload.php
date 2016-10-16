@@ -1,8 +1,7 @@
 <?php
 
-use Vnn\WpApiClient\Auth\WpBasicAuth;
-use Vnn\WpApiClient\Http\GuzzleAdapter;
-use Vnn\WpApiClient\WpClient;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Uri;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -21,17 +20,18 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 * Tests image uploadn
 	 */
 	function testUpload() {
-	  $wpClient = new WpClient(new GuzzleAdapter(new GuzzleHttp\Client()), 'http://localhost:8080');
-	  $wpClient->setCredentials(new WpBasicAuth('admin', 'password'));
-	  $post = $wpClient->posts()->save(array(
-        'type' => 'page',
-	    'title' => 'import',
-	    'content' => '[email_media_import]',
-	    'status' => 'publish'
-	  ));
-	  
-	  var_dump($post);
-	  
+      $client = new GuzzleHttp\Client();
+	  $response = $client->request('POST', "http://localhost/wp-json/wp/v2/posts", [
+	    'json' => [
+          'type' => 'page',
+	      'title' => 'import',
+	      'content' => '[email_media_import]',
+	      'status' => 'publish'
+		]
+	  ]);
+		
+	  var_dump($response);
+	  $post = null;
 	  $this->assertNotNull($post);
 	}
 	
@@ -39,28 +39,6 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	  return  file_get_contents($url, false, null);
 	}
 	
-	
-	/**
-	function mockWebHook() {
-	  $url = "http://localhost";
-	  
-		$url = 'http://server.com/path';
-		$data = array('key1' => 'value1', 'key2' => 'value2');
-		
-		// use key 'http' even if you send the request to https://...
-		$options = array(
-				'http' => array(
-						'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-						'method'  => 'POST',
-						'content' => http_build_query($data)
-				)
-		);
-		$context  = stream_context_create($options);
-		$result = file_get_contents($url, false, $context);
-		if ($result === FALSE) { Handle error  }
-		
-		var_dump($result);	}
-		**/
 	function createPostRequestData($bodyPlain, $token, $signature, $imageName, $imageType, $imageUrl, $imageSize) {
 	  $fromName = "Someone Special";
 	  $fromMail = "someone-special@example.com";
