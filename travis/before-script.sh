@@ -16,7 +16,7 @@ mkdir /tmp/www
 cd /tmp/www
 /tmp/wp core download
 /tmp/wp core config --dbname=www --dbuser=root
-/tmp/wp core install --url=http://localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com
+/tmp/wp core install --url=http://localhost:8080 --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 
