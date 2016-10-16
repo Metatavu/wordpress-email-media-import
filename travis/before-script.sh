@@ -20,21 +20,7 @@ cd /tmp/www
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 /tmp/wp plugin install rest-api --activate
+composer install
 
 # Start nginx
 nginx -c $BASE/travis/nginx.conf
-
-# Just test
-
-echo "Curling /"
-curl http://localhost:8080
-
-echo "Curling /index.php"
-curl http://localhost:8080/index.php
-
-echo "Error log"
-cat /tmp/error.log
-
-echo "Access log"
-cat /tmp/access.log
-
