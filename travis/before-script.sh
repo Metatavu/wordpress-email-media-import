@@ -19,10 +19,10 @@ cd /tmp/www
 /tmp/wp core install --url=http://localhost:8080 --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
+/tmp/wp plugin install rest-api --activate
 
 # Start nginx
 nginx -c $BASE/travis/nginx.conf
-
 
 # Just test
 
