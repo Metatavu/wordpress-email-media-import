@@ -1,0 +1,8 @@
+{
+  "minimum-stability": "dev",
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "vnn/wordpress-rest-api-client": "*",
+    "wiremock-php/wiremock-php": "*"
+  }
+}

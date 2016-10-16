@@ -3,7 +3,6 @@
 /.settings
 /vendor/
 /wp/
-/composer.json
 svn
 /wordpress-tests-lib/
 /composer.lock
