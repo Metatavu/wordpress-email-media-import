@@ -26,14 +26,11 @@ nginx -c $BASE/travis/nginx.conf
 
 # Just test
 
-echo 'ls'
-ls /tmp/www
-
 echo "Curling /"
-curl -I http://localhost:8080
+curl http://localhost:8080
 
 echo "Curling /index.php"
-curl -I http://localhost:8080/index.php
+curl http://localhost:8080/index.php
 
 echo "Error log"
 cat /tmp/error.log
