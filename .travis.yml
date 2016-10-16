@@ -5,6 +5,10 @@ notifications:
     on_success: never
     on_failure: change
 
+cache:
+  directories:
+    - $HOME/.composer
+
 services:
   - mysql
 
@@ -23,3 +27,6 @@ before_script:
   - bash travis/before-script.sh
 
 script: phpunit
+  
+after_script:
+  - bash travis/after-script.sh
