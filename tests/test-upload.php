@@ -3,7 +3,7 @@
 use Vnn\WpApiClient\Http\GuzzleAdapter;
 use Vnn\WpApiClient\WpClient;
 
-require '../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 /**
  * Class UploadTest
