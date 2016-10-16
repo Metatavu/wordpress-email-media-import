@@ -2,6 +2,9 @@
 
 BASE=`pwd`
 
+# Update dependencies
+composer install
+
 # Setup MySQL
 mysql -e 'create database www;'
 
@@ -20,7 +23,6 @@ cd /tmp/www
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 /tmp/wp plugin install rest-api --activate
-composer install
 
 # Start nginx
 nginx -c $BASE/travis/nginx.conf
