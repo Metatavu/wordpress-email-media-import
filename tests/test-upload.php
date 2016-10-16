@@ -28,10 +28,10 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	      'status' => 'publish'
 		]
 	  ]);
-		
-	  var_dump($response);
-	  $post = null;
-	  $this->assertNotNull($post);
+	  
+	  $page = $response->json(); 
+	  var_dump($page);
+	  $this->assertNotNull($page);
 	}
 	
 	function getRequest($url) {
