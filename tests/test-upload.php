@@ -29,8 +29,12 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 		]
 	  ]);
 	  
-	  $page = $response->json(); 
-	  var_dump($page);
+	  $body = $response->getBody();
+	  var_dump($body);
+	   
+	  $page = json_decode($body);
+	  var_dump(page);
+	   
 	  $this->assertNotNull($page);
 	}
 	
