@@ -20,11 +20,20 @@ cd /tmp/www
 /tmp/wp core download
 /tmp/wp core config --dbname=www --dbuser=root
 /tmp/wp core install --url=http://localhost --title=Test --admin_user=admin --admin_password=password --admin_email=admin@example.com
-/tmp/wp plugin install file://$BASE
+ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
+/tmp/wp plugin activate email-media-import
 
 # Just test
+
 echo "Curling /"
 curl http://localhost:8080
 
 echo "Curling /index.php"
 curl http://localhost:8080/index.php
+
+echo "Error log"
+cat /tmp/error.log
+
+echo "Access log"
+cat /tmp/access.log
+
