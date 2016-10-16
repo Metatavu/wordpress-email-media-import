@@ -24,10 +24,10 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	  $wpClient = new WpClient(new GuzzleAdapter(new GuzzleHttp\Client()), 'http://localhost:8080');
 	  $wpClient->setCredentials(new WpBasicAuth('admin', 'password'));
 	  $post = $wpClient->posts()->save(array(
-        'post-type' => 'page',
-	    'post_title' => 'import',
-	    'post_content' => '[email_media_import]',
-	    'post_status' => 'published'
+        'type' => 'page',
+	    'title' => 'import',
+	    'content' => '[email_media_import]',
+	    'status' => 'publish'
 	  ));
 	  
 	  var_dump($post);
