@@ -23,7 +23,7 @@ cd /tmp/www
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 /tmp/wp plugin install rest-api --activate
-wp option update permalink_structure /archives/%post_id%
+/tmp/wp option update permalink_structure /archives/%post_id%
 
 # Start nginx
 nginx -c $BASE/travis/nginx.conf
