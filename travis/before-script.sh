@@ -1,10 +1,13 @@
 #/bin/bash
 
+# Setup MySQL
+mysql -e 'create database www;'
+
 # Install wp-cli
 curl -sS -o /tmp/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod a+x /tmp/wp
 
 # Setup nginx
-nginx -c travis/nginx.conf
+nginx -c `pwd`/travis/nginx.conf
 
 # Setup wp
 mkdir /tmp/www
