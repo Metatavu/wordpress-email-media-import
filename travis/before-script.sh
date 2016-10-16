@@ -7,7 +7,7 @@ mysql -e 'create database www;'
 curl -sS -o /tmp/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod a+x /tmp/wp
 
 # Setup php-fmt
-$HOME/.phpenv/versions/$PHP_VERSION/sbin/php-fpm --fpm-config `pwd`/travis/php-fmt.conf
+php-fpm --fpm-config `pwd`/travis/php-fmt.conf
 
 # Setup nginx
 nginx -c `pwd`/travis/nginx.conf
