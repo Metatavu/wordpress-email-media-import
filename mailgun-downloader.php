@@ -34,7 +34,7 @@
   	  return null;
   	}
   	
-  	private function getFileData($attachmentUrl, $attachmentSize) {
+  	private function getFileData($attachmentUrl) {
   	  $auth = base64_encode("api:$this->mailgunKey");
   	  $context = stream_context_create(array(
   	    'http' => array (
