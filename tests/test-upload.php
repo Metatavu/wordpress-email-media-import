@@ -1,4 +1,10 @@
 <?php
+
+use Vnn\WpApiClient\Http\GuzzleAdapter;
+use Vnn\WpApiClient\WpClient;
+
+require 'vendor/autoload.php';
+
 /**
  * Class UploadTest
  *
@@ -8,12 +14,17 @@
 /**
  * Upload test case.
  */
-class UploadTest extends WP_UnitTestCase {
+class UploadTest extends PHPUnit_Framework_TestCase {
 	
 	/**
 	 * Tests image uploadn
 	 */
 	function testUpload() {
+	  $wpClient = new WpClient(new GuzzleAdapter(new GuzzleHttp\Client()), 'http://localhost:8080');
+	  $user = $wpClient->users()->get(1);
+	  var_dump($user);
+		/**
+		
 	  $pageId = $this->factory->post->create(array(
         'post-type' => 'page',
 	    'post_title' => 'import',
@@ -27,6 +38,8 @@ class UploadTest extends WP_UnitTestCase {
 	  
 		// $_POST = $this->createPostRequestData("ruumis", "123", "123", "123", "image/png", "http://fake.example.com/file.png", 12345);
 		// var_dump($_POST);
+		 *
+		 */
 	}
 	
 	function getRequest($url) {
