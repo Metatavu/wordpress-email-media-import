@@ -11,11 +11,8 @@ curl -sS -o /tmp/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/pha
 # Setup php-fmt
 php-fpm --fpm-config $BASE/travis/php-fmt.conf
 
-# Setup nginx
-mkdir /tmp/www
-nginx -c $BASE/travis/nginx.conf
-
 # Setup wp
+mkdir /tmp/www
 cd /tmp/www
 /tmp/wp core download
 /tmp/wp core config --dbname=www --dbuser=root
@@ -23,16 +20,20 @@ cd /tmp/www
 ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 
+# Start nginx
+nginx -c $BASE/travis/nginx.conf
+
+
 # Just test
 
 echo 'ls'
 ls /tmp/www
 
 echo "Curling /"
-curl http://localhost:8080
+curl -I http://localhost:8080
 
 echo "Curling /index.php"
-curl http://localhost:8080/index.php
+curl -I http://localhost:8080/index.php
 
 echo "Error log"
 cat /tmp/error.log
