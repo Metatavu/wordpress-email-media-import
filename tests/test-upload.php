@@ -17,25 +17,25 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 * Tests image uploadn
 	 */
 	function testUpload() {
-      $client = new GuzzleHttp\Client();
-	  $response = $client->post("http://localhost:8080/wp-json/wp/v2/posts", [
-	  	'auth' => ['admin', 'password'],
-	  	'json' => [
-          'type' => 'page',
-	      'title' => 'import',
-	      'content' => '[email_media_import]',
-	  	  'status' => 'publish'
-	    ]
-	  ]);
+//       $client = new GuzzleHttp\Client();
+// 	  $response = $client->post("http://localhost:8080/wp-json/wp/v2/posts", [
+// 	  	'auth' => ['admin', 'password'],
+// 	  	'json' => [
+//           'type' => 'page',
+// 	      'title' => 'import',
+// 	      'content' => '[email_media_import]',
+// 	  	  'status' => 'publish'
+// 	    ]
+// 	  ]);
 	  
-	  echo "StatusCode:" . $response->getStatusCode();
-	  echo "Body: " . $response->getBody();
-	   /*
-	  $page = json_decode($body);
-	  print_r($page);
+// 	  echo "StatusCode:" . $response->getStatusCode();
+// 	  echo "Body: " . $response->getBody();
+// 	   /*
+// 	  $page = json_decode($body);
+// 	  print_r($page);
 	   
-	  $this->assertNotNull($page);
-	  **/
+// 	  $this->assertNotNull($page);
+// 	  **/
 	}
 	
 	function getRequest($url) {
