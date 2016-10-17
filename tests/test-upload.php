@@ -20,20 +20,18 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 */
 	function testUpload() {
       $client = new GuzzleHttp\Client();
-	  $response = $client->request('POST', "http://localhost:8080/wp-json/wp/v2/posts", [
-	    'json' => [
-          'type' => 'page',
-	      'title' => 'import',
-	      'content' => '[email_media_import]',
-	      'status' => 'publish'
-		]
-	  ]);
-	  
+	  $response = $client->post("http://localhost:8080/wp-json/wp/v2/posts", ['json' => [
+        'type' => 'page',
+	    'title' => 'import',
+	    'content' => '[email_media_import]',
+	  	'status' => 'publish'
+	  ]]);
+	  echo $response->getStatusCode();
 	  $body = $response->getBody();
-	  var_dump($body);
+	  echo $body;
 	   
 	  $page = json_decode($body);
-	  var_dump(page);
+	  print_r($page);
 	   
 	  $this->assertNotNull($page);
 	}
