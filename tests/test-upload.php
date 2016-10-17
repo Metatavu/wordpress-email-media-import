@@ -1,7 +1,5 @@
 <?php
 
-use GuzzleHttp\Client;
-
 require __DIR__ . '/../vendor/autoload.php';
 
 /**
@@ -19,16 +17,16 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 * Tests image uploadn
 	 */
 	function testUpload() {
-      $client = new GuzzleHttp\Client();
-	  $response = $client->post("http://localhost:8080/wp-json/wp/v2/posts", ['json' => [
+      $client = new Guzzle\Http\Client();
+      $request->setAuth('username', 'password');
+	  $request = $client->post("http://localhost:8080/wp-json/wp/v2/posts", ['json' => [
         'type' => 'page',
 	    'title' => 'import',
 	    'content' => '[email_media_import]',
 	  	'status' => 'publish'
-	  ], 'auth' => [
-        'admin', 
-        'password'
-      ]]);
+	  ]]);
+	  
+	  $response = $request->send();
 	  
 	  echo "StatusCode:" . $response->getStatusCode();
 	  echo "Body: " . $response->getBody();
