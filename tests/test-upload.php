@@ -17,9 +17,15 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 * Tests image uploadn
 	 */
 	function testUpload() {
-//       $client = new GuzzleHttp\Client();
-// 	  $response = $client->post("http://localhost:8080/wp-json/wp/v2/posts", [
-// 	  	'auth' => ['admin', 'password'],
+	  $client = new GuzzleHttp\Client();
+	  
+	  $response = $client->get("http://localhost:8080/wp-json/wp/v2/pages?slug=import");
+	  echo "Body: " . $response->getBody();
+	  $page = json_decode($body);
+	  $this->assertNotNull($page);
+	  echo "Link: " . $page->link;
+	  
+// 	  , [
 // 	  	'json' => [
 //           'type' => 'page',
 // 	      'title' => 'import',
@@ -29,12 +35,12 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 // 	  ]);
 	  
 // 	  echo "StatusCode:" . $response->getStatusCode();
-// 	  echo "Body: " . $response->getBody();
+// 	  
 // 	   /*
-// 	  $page = json_decode($body);
+// 	  
 // 	  print_r($page);
 	   
-// 	  $this->assertNotNull($page);
+// 	  
 // 	  **/
 	}
 	
