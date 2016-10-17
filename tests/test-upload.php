@@ -17,7 +17,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	 * Tests image uploadn
 	 */
 	function testUpload() {
-      $client = new Guzzle\Http\Client();
+      $client = new GuzzleHttp\Client();
       $request->setAuth('username', 'password');
 	  $request = $client->post("http://localhost:8080/wp-json/wp/v2/posts", ['json' => [
         'type' => 'page',
