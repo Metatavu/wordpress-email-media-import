@@ -25,15 +25,19 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	    'title' => 'import',
 	    'content' => '[email_media_import]',
 	  	'status' => 'publish'
-	  ]]);
-	  echo $response->getStatusCode();
-	  $body = $response->getBody();
-	  echo $body;
-	   
+	  ], 'auth' => [
+        'admin', 
+        'password'
+      ]]);
+	  
+	  echo "StatusCode:" . $response->getStatusCode();
+	  echo "Body: " . $response->getBody();
+	   /*
 	  $page = json_decode($body);
 	  print_r($page);
 	   
 	  $this->assertNotNull($page);
+	  **/
 	}
 	
 	function getRequest($url) {
