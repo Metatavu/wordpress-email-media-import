@@ -24,7 +24,7 @@ ln -s $BASE /tmp/www/wp-content/plugins/email-media-import
 /tmp/wp plugin activate email-media-import
 /tmp/wp plugin install rest-api --activate
 /tmp/wp option update permalink_structure /archives/%post_id%
-/tmp/wp post create tests/import-content.txt --post_type=page --post_title='import'
+/tmp/wp post create $BASE/tests/import-content.txt --post_type=page --post_title='import'
 
 # Start nginx
 nginx -c $BASE/travis/nginx.conf
