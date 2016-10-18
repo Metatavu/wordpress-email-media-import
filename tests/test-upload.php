@@ -24,24 +24,6 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	  $page = json_decode($response->getBody());
 	  $this->assertNotNull($page);
 	  echo "Link: " . $page->link;
-	  
-// 	  , [
-// 	  	'json' => [
-//           'type' => 'page',
-// 	      'title' => 'import',
-// 	      'content' => '[email_media_import]',
-// 	  	  'status' => 'publish'
-// 	    ]
-// 	  ]);
-	  
-// 	  echo "StatusCode:" . $response->getStatusCode();
-// 	  
-// 	   /*
-// 	  
-// 	  print_r($page);
-	   
-// 	  
-// 	  **/
 	}
 	
 	function getRequest($url) {
