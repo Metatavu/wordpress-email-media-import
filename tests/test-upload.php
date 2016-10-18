@@ -21,8 +21,10 @@ class UploadTest extends PHPUnit_Framework_TestCase {
 	  
 	  $response = $client->get("http://localhost:8080/wp-json/wp/v2/pages");
 	  echo "Body: " . $response->getBody();
-	  $page = json_decode($response->getBody());
-	  $this->assertNotNull($page);
+	  echo "Link: " . $page->link;
+	  
+	  $response = $client->get("http://localhost:8080/wp-json/wp/v2/posts");
+	  echo "Body: " . $response->getBody();
 	  echo "Link: " . $page->link;
 	}
 	
