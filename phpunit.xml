@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit verbose="true">
+
+  <testsuites>
+    <testsuite name="AllTests">
+      <file>tests/test-upload.php</file>
+    </testsuite>
+  </testsuites>
+  
+</phpunit>

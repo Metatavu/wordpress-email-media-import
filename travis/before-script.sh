@@ -9,13 +9,14 @@ composer install
 mysql -e 'create database wp;'
 
 # Copy config
-cp $BASE/travis/grunt-config.json $BASE/grunt-config.json
+cp $BASE/travis/grunt-config.json $BASE/tests/grunt-config.json
 
 # Install wp-cli
 mkdir -p /tmp/bin
 curl -sS -o /tmp/bin/wp https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod a+x /tmp/bin/wp
 export PATH="$PATH:/tmp/bin"
 
+cd tests
 # Setup grunt
 npm install
 

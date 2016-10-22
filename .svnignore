@@ -1,3 +1,5 @@
 composer.json
 sync-svn.sh
 release.sh
+tests
+travis

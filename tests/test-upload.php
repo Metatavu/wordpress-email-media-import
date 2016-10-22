@@ -13,6 +13,8 @@ require __DIR__ . '/../vendor/autoload.php';
  */
 class UploadTest extends PHPUnit_Framework_TestCase {
 	
+  private $wpDir = "tests/wp"; 
+	
   /**
    * @before
    */
@@ -41,7 +43,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   
   private function getUploaFolder() {
   	$dateFolder = date("Y/m");
-  	return "wp/wp-content/uploads/$dateFolder/";
+  	return "$this->wpDir/wp-content/uploads/$dateFolder/";
   }
   
   private function findPage($search) {
