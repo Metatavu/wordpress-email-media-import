@@ -16,6 +16,7 @@ addons:
   apt:
     packages:
     - node
+    - npm
 
 php:
   - 5.6
