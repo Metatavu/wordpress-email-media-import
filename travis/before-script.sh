@@ -2,6 +2,9 @@
 
 BASE=`pwd`
 
+# Install dependencies
+composer install
+
 # Setup MySQL
 mysql -e 'create database wp;'
 
