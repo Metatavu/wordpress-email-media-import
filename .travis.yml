@@ -23,7 +23,7 @@ before_script:
   - nvm install 6
   - bash travis/before-script.sh
 
-script: phpunit
+script: phpunit --coverage-clover /tmp/coverage.xml
   
 after_script:
   - bash travis/after-script.sh
