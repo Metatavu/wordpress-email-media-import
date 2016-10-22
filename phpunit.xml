@@ -8,15 +8,16 @@
   </testsuites>
   
   <filter>
-    <whitelist processUncoveredFilesFromWhitelist="true">
-      <exclude>
-        <directory suffix=".php">.</directory>
-      </exclude>
+    <whitelist processUncoveredFilesFromWhitelist="false">
+      <file>constants.php</file>
+      <file>foogallery-importter.php</file>
+      <file>mailgun-downloader.php</file>    
+      <file>settings.php</file>
+      <file>email-media-import.php</file>   
+      <file>image-editor.php</file>
+      <file>media-importter.php</file>   
+      <file>text-processor.php</file>
     </whitelist>
-    <blacklist>
-      <directory>vendor</directory>
-      <directory>tests</directory>
-    </blacklist>
   </filter>
   
 </phpunit>
