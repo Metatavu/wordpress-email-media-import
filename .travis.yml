@@ -12,21 +12,15 @@ cache:
 services:
   - mysql
 
-addons:
-  apt:
-    packages:
-      - nodejs
-
 php:
   - 5.6
 
 env:
   - WP_VERSION=latest WP_MULTISITE=0
-  - TRAVIS_NODE_VERSION="4"
   
 before_script:
   - source ~/.nvm/nvm.sh
-  - nvm install $TRAVIS_NODE_VERSION
+  - nvm install 6
   - bash travis/before-script.sh
 
 script: phpunit
