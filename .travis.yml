@@ -1,5 +1,7 @@
 language: node_js
-
+node_js:
+  - "6"
+  
 notifications:
   email:
     on_success: never
@@ -15,7 +17,6 @@ services:
 addons:
   apt:
     packages:
-    - php
 
 php:
   - 5.6
