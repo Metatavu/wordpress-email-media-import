@@ -165,7 +165,7 @@ module.exports = function(grunt) {
     },
     'bgShell': {
       "start-wordpress-server-background": {
-        cmd: "php -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
+        cmd: "php -e -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
         bg: true,
         execOpts: {
           cwd: config.wordpress.path

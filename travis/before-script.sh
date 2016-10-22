@@ -24,6 +24,10 @@ npm install
 # install wordpress 
 grunt install-wordpress
 
+# XDebug
+
+export XDEBUG_CONFIG="remote_enable=on default_enable=on remote_autostart=on remote_host=localhost profiler_enable=1"
+
 # Start server
 grunt start-server
 grunt mock-data
