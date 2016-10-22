@@ -1,7 +1,6 @@
 {
   "require-dev": {
     "phpunit/phpunit": "*",
-    "guzzlehttp/guzzle": "*",
-    "wiremock-php/wiremock-php": "*"
+    "guzzlehttp/guzzle": "^6.2"
   }
 }
