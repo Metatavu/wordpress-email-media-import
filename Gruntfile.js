@@ -190,11 +190,13 @@ module.exports = function(grunt) {
   
   /// TODO: Change shell:wordpress-permalinks to wp-cli
   
-  grunt.registerTask("install-wordpress", ["mustache_render:database-init", "mysqlrunfile:database-init", "wp-cli:download", "wp-cli:config", "wp-cli:install", "shell:wordpress-languages-writable", "symlink:wordpress-plugins", "wp-cli:install-plugins", "wp-cli:activate-plugins", "wp-cli:update-languages", "shell:wordpress-permalinks", "shell:wordpress-email-options"]);
+  grunt.registerTask("create-database", ["mustache_render:database-init", "mysqlrunfile:database-init"]);
+  grunt.registerTask("install-wordpress", ["wp-cli:download", "wp-cli:config", "wp-cli:install", "shell:wordpress-languages-writable", "symlink:wordpress-plugins", "wp-cli:install-plugins", "wp-cli:activate-plugins", "wp-cli:update-languages", "shell:wordpress-permalinks", "shell:wordpress-email-options"]);
   grunt.registerTask("start-server", ["bgShell:start-wordpress-server-background", "wait:2s"]);
   grunt.registerTask("start-blocking-server", ["shell:start-wordpress-server"]);
   grunt.registerTask("stop-server", ["bgShell:kill-wordpress-server-background"]);
-  grunt.registerTask("uninstall-wordpress", ["mustache_render:database-drop", "mysqlrunfile:database-drop", "clean:uninstall-wordpress"]);
+  grunt.registerTask("uninstall-wordpress", ["clean:uninstall-wordpress"]);
+  grunt.registerTask("drop-database", ["mustache_render:database-drop", "mysqlrunfile:database-drop"]);
   grunt.registerTask("mock-data", ["wp-cli:import-page"]);
   
 };

@@ -2,6 +2,9 @@
 
 BASE=`pwd`
 
+# Setup MySQL
+mysql -e 'create database wp;'
+
 # Copy config
 cp $BASE/travis/grunt-config.json $BASE/grunt-config.json
 
