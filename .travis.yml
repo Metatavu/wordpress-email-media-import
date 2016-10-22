@@ -15,7 +15,7 @@ services:
 addons:
   apt:
     packages:
-    - nginx
+    - node
 
 php:
   - 5.6

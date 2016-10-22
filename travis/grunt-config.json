@@ -1,0 +1,30 @@
+{
+  "mysql": {
+    "user": "root",
+    "host": "localhost",
+    "password": ""
+  },
+  "wordpress": {
+    "path": "wp",
+    "database": {
+      "name": "wp",
+      "user": "root",
+      "password": ""
+    },
+    "site": {
+      "url": "localhost:1234",
+      "title": "Test Wordpress",
+      "adminUser": "admin",
+      "adminPassword": "password",
+      "adminEmail": "admin@example.com"
+    },
+    "plugins": {
+      "rest-api": {
+        
+      },
+      "email-media-import": {
+        "file": "."
+      }
+    }
+  }
+}
