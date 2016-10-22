@@ -17,7 +17,7 @@ export PATH="$PATH:/tmp/bin"
 npm install
 
 # install wordpress 
-grunt install-wordpress
+grunt install-wordpress --verbose
 
 # Start server
 grunt start-server
