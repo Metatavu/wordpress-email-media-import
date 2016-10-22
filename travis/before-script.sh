@@ -4,6 +4,7 @@ BASE=`pwd`
 
 # Install dependencies
 composer install
+composer require satooshi/php-coveralls
 
 # Setup MySQL
 mysql -e 'create database wp;'
