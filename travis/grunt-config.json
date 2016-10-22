@@ -22,6 +22,9 @@
       "rest-api": {
         
       },
+      "Basic-Auth-master": {
+        "url": "https://github.com/WP-API/Basic-Auth/archive/master.zip"
+      },
       "email-media-import": {
         "file": "../"
       }
