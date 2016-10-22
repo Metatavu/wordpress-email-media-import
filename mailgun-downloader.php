@@ -24,17 +24,19 @@
   	  $attachmentsDecoded = (Array) json_decode(stripcslashes($attachments));
   	  if (count($attachmentsDecoded) > 0) {
   	    $attachmentDecoded = (Array) $attachmentsDecoded[0];
-  	    return array(
-          'name' => $attachmentDecoded['name'],
-  	      'contentType' => $attachmentDecoded['content-type'],
-  	      'data' => $this->getFileData($attachmentDecoded['url'], $attachmentDecoded['size'])
-  	    );
+  	  	if (!empty($attachmentDecoded['url'])) {
+    	  return array(
+            'name' => $attachmentDecoded['name'],
+  	        'contentType' => $attachmentDecoded['content-type'],
+  	        'data' => $this->getFileData($attachmentDecoded['url'], $attachmentDecoded['size'])
+  	      );
+  	  	}
   	  }
   	  
   	  return null;
   	}
   	
-  	private function getFileData($attachmentUrl) {
+  	private function getFileData($attachmentUrl, $attachmentSize) {
   	  $auth = base64_encode("api:$this->mailgunKey");
   	  $context = stream_context_create(array(
   	    'http' => array (
@@ -42,13 +44,14 @@
   		  'header' => "Authorization: Basic $auth"
   		)
   	  ));
-  		
+  	  
   	  $file = fopen($attachmentUrl, 'r', false, $context);
   	  try {
-  	  	$data = '';
-  	  	while (!feof($file)) {
-  	      $data .= fread($file, 4096);
+  	    $data = '';
+        while (!feof($file)) {
+    	  $data .= fread($file, 4096);
   	  	}
+  	  	
   	  	return $data;
   	  } finally {
   	    fclose($file);
