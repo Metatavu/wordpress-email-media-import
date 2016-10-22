@@ -22,8 +22,11 @@ php:
 
 env:
   - WP_VERSION=latest WP_MULTISITE=0
+  - TRAVIS_NODE_VERSION="4"
   
 before_script:
+  - source ~/.nvm/nvm.sh
+  - nvm install $TRAVIS_NODE_VERSION
   - bash travis/before-script.sh
 
 script: phpunit
