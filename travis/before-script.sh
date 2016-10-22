@@ -3,7 +3,7 @@
 BASE=`pwd`
 
 # Copy config
-cp $BASE/travis/grunt-config.js $BASE/grunt-config.js
+cp $BASE/travis/grunt-config.json $BASE/grunt-config.json
 
 # Install wp-cli
 mkdir -p /tmp/bin
