@@ -1,4 +1,4 @@
-language: php
+language: node_js
 
 notifications:
   email:
@@ -15,8 +15,7 @@ services:
 addons:
   apt:
     packages:
-    - node
-    - npm
+    - php
 
 php:
   - 5.6
