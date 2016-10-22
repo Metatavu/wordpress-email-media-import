@@ -23,7 +23,7 @@ before_script:
   - nvm install 6
   - bash travis/before-script.sh
   
-script: php -d xdebug.profiler_enable=on -d xdebug.remote_enable=on -d xdebug.default_enable=on -d xdebug.remote_autostart=on -d xdebug.remote_host=localhost vendor/phpunit/phpunit/phpunit --coverage-clover /tmp/coverage.xml
+script: php -d xdebug.profiler_enable=on -d xdebug.remote_enable=on -d xdebug.default_enable=on -d xdebug.remote_autostart=on -d xdebug.remote_host=localhost -d xdebug.remote_port=1234 vendor/phpunit/phpunit/phpunit --coverage-clover /tmp/coverage.xml
   
 after_script:
   - bash travis/after-script.sh
