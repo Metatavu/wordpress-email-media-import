@@ -9,10 +9,7 @@
   
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="false">
-      <directory suffix=".php">.</directory>
-      <exclude>
-        <directory suffix=".php">tests</directory>
-      </exclude>
+      <file>email-media-import.php</file>
     </whitelist>
   </filter>
   
