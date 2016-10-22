@@ -25,12 +25,11 @@ require_once("image-editor.php");
 require_once("text-processor.php");
   
 function emailMediaImportShortCode($attrs) {
-  if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-  	echo "Invalid request method " . $_SERVER['REQUEST_METHOD'];
-  	http_response_code(400);
-  	die;  	
-  } else {
-  	$fooGalleryId = $attrs['foo-gallery-id'];
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  	$fooGalleryId = null;
+  	if ($attrs) {
+  	  $fooGalleryId = array_key_exists("foo-gallery-id", $attrs) ? $attrs['foo-gallery-id'] : null;
+  	}
   	
     $options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
     
