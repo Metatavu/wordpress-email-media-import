@@ -23,7 +23,7 @@ before_script:
   - nvm install 6
   - bash travis/before-script.sh
 
-script: php -d xdebug.profiler_enable=on /usr/bin/phpunit --coverage-clover /tmp/coverage.xml
+script: export PHPUNIT=`which phpunit` && echo $PHPUNIT &&  php -d xdebug.profiler_enable=on $PHPUNIT --coverage-clover /tmp/coverage.xml
   
 after_script:
   - bash travis/after-script.sh
