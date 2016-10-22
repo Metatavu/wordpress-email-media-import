@@ -9,7 +9,7 @@
   
   <filter>
     <whitelist processUncoveredFilesFromWhitelist="false">
-      <file>email-media-import.php</file>
+      <file>*.php</file>
     </whitelist>
   </filter>
   
