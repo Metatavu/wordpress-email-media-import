@@ -126,17 +126,6 @@ module.exports = function(grunt) {
         "options": {
           "all": true
         }
-      },
-      "import-page": {
-        "path": config.wordpress.path,
-        "command": "post",
-        "subcommand": "create",
-        "options": {
-          "post_type": "page",
-          "post_title": "import",
-          "post_content": "[email_media_import]",
-          "post_status": "publish"
-        }
       }
     },
     "shell": {
@@ -197,6 +186,5 @@ module.exports = function(grunt) {
   grunt.registerTask("stop-server", ["bgShell:kill-wordpress-server-background"]);
   grunt.registerTask("uninstall-wordpress", ["clean:uninstall-wordpress"]);
   grunt.registerTask("drop-database", ["mustache_render:database-drop", "mysqlrunfile:database-drop"]);
-  grunt.registerTask("mock-data", ["wp-cli:import-page"]);
   
 };
