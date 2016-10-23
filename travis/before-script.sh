@@ -1,7 +1,5 @@
 #/bin/bash
 
-php --info | grep xdebug
-
 BASE=`pwd`
 
 # Install dependencies
