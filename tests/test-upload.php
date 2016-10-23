@@ -19,18 +19,24 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    * @before
    */
    public function setUpTest() {
-   	 $this->deletePages($this->listPages());
-     $this->deleteFooGalleries($this->listFooGalleries());
-   	
      date_default_timezone_set('UTC');
+     echo "Setup\n";
      $this->createPage("import", "[email_media_import]");
-     $this->deleteFooGalleries($this->listFooGalleries());
      $this->createFooGallery("firstgallery", "");
      $this->createFooGallery("secondgallery", "");
      $this->createFooGallery("thirdgallery", "");
      $this->assertCount(3, $this->listFooGalleries());
    }
    
+   /**
+    * @after
+    */
+   public function tearDownTest() {
+     echo "Teardown\n";
+   	$this->deletePages($this->listPages());
+     $this->deleteFooGalleries($this->listFooGalleries());
+   }
+  
   /**
    * Tests image upload
    */
