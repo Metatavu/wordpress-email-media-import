@@ -22,7 +22,7 @@ cd tests
 npm install
 
 # install wordpress 
-grunt create-database install-wordpress
+grunt install-wordpress
 
 # Start server
 grunt start-server
