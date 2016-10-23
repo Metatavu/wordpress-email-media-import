@@ -19,8 +19,6 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    * @before
    */
    public function setUpTest() {
-   	 echo "Before, page count now :" . count($this->listPages()) . '\n'; 
-   	
    	 date_default_timezone_set('UTC');
      $this->createPage("import", "[email_media_import]");
      $this->createFooGallery("firstgallery", "");
@@ -33,12 +31,8 @@ class UploadTest extends PHPUnit_Framework_TestCase {
     * @after
     */
    public function tearDownTest() {
-   	 echo "After, delete :" . count($this->listPages()) . ' pages.\n'; 
-   	
-     $this->deletePages($this->listPages());
+   	 $this->deletePages($this->listPages());
      $this->deleteFooGalleries($this->listFooGalleries());
-     
-     echo "After, now pages :" . count($this->listPages()) . ' pages.\n';
    }
   
   /**
@@ -178,7 +172,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	]);
   	
   	$this->assertNotNull($response);
-  	// $this->assertEquals(200, $response->getStatusCode());
+  	$this->assertEquals(200, $response->getStatusCode());
   	
   	$body = $response->getBody();
   	$this->assertNotNull($body);
