@@ -221,7 +221,8 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	]);
   	 
   	$this->assertNotNull($response);
-  	$this->assertEquals(200, $response->getStatusCode());
+  	$this->assertGreaterThanOrEqual(200, $response->getStatusCode());
+  	$this->assertLessThanOrEqual(299, $response->getStatusCode());
   	 
   	$body = $response->getBody();
   	$this->assertNotNull($body);
