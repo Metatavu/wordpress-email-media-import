@@ -154,7 +154,7 @@ module.exports = function(grunt) {
     },
     'bgShell': {
       "start-wordpress-server-background": {
-        cmd: "php -d error_log=/tmp/php_errors.log -d xdebug.remote_port=2345 -e -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
+        cmd: "php -d error_log=/tmp/php_errors.log -d xdebug.remote_port=2345 -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
         bg: true,
         execOpts: {
           cwd: config.wordpress.path
