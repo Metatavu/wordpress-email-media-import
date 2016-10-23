@@ -19,7 +19,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    * @before
    */
    public function setUpTest() {
-   	 echo "page count now :" . count($this->listPages());
+   	 echo "Before, page count now :" . count($this->listPages()) . '\n'; 
    	
    	 date_default_timezone_set('UTC');
      $this->createPage("import", "[email_media_import]");
@@ -33,12 +33,12 @@ class UploadTest extends PHPUnit_Framework_TestCase {
     * @after
     */
    public function tearDownTest() {
-   	 echo "delete :" . count($this->listPages()) . ' pages.'; 
+   	 echo "After, delete :" . count($this->listPages()) . ' pages.\n'; 
    	
      $this->deletePages($this->listPages());
      $this->deleteFooGalleries($this->listFooGalleries());
      
-     echo "now pages :" . count($this->listPages()) . ' pages.';
+     echo "After, now pages :" . count($this->listPages()) . ' pages.\n';
    }
   
   /**
