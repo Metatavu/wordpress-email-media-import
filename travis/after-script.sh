@@ -1,4 +1,4 @@
 #/bin/bash
 
-cat /tmp/coverage.xml
+cat /tmp/server.out
 vendor/satooshi/php-coveralls/bin/coveralls

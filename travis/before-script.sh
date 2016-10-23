@@ -27,4 +27,4 @@ npm install
 grunt install-wordpress
 
 # Start server
-grunt start-server
+grunt start-blocking-server > /tmp/server.out &
