@@ -45,6 +45,7 @@
   	add_settings_section('tags', __('Email Media Tag Settings', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), null, EMAIL_MEDIA_IMPORT_SETTINGS_PAGE);
   	add_settings_field('titleTag', __('Title tag', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportTitleTag', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'tags');
   	add_settings_field('descriptionTag', __('Description tag', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportDescriptionTag', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'tags');
+  	add_settings_field('galleryTag', __('Gallery tag', EMAIL_MEDIA_IMPORT_I18N_DOMAIN), 'emailMediaImportGalleryTag', EMAIL_MEDIA_IMPORT_SETTINGS_PAGE, 'tags');
   }
 
   function emailMediaImportMailgunKey() {
@@ -76,5 +77,11 @@
   	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
   	echo "<input id='descriptionTag' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[descriptionTag]' size='42' type='text' value='{$options['descriptionTag']}' placeholder='description'/>";
   }
+
+  function emailMediaImportGalleryTag() {
+  	$options = get_option(EMAIL_MEDIA_IMPORT_SETTINGS);
+  	echo "<input id='galleryTag' name='" . EMAIL_MEDIA_IMPORT_SETTINGS . "[galleryTag]' size='42' type='text' value='{$options['galleryTag']}' placeholder='gallery'/>";
+  }
+  
   
 ?>
