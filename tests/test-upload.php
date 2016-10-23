@@ -20,7 +20,6 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    */
    public function setUpTest() {
      date_default_timezone_set('UTC');
-     echo "Setup\n";
      $this->createPage("import", "[email_media_import]");
      $this->createFooGallery("firstgallery", "");
      $this->createFooGallery("secondgallery", "");
@@ -32,8 +31,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
     * @after
     */
    public function tearDownTest() {
-     echo "Teardown\n";
-   	$this->deletePages($this->listPages());
+     $this->deletePages($this->listPages());
      $this->deleteFooGalleries($this->listFooGalleries());
    }
   
