@@ -19,9 +19,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    * @before
    */
    public function setUpTest() {
-   	 var_dump($this->listPages());
-   	
-     date_default_timezone_set('UTC');
+   	 date_default_timezone_set('UTC');
      $this->createPage("import", "[email_media_import]");
      $this->createFooGallery("firstgallery", "");
      $this->createFooGallery("secondgallery", "");
