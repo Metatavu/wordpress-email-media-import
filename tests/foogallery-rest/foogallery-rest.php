@@ -24,13 +24,15 @@ function fooGalleryRestSupport() {
   }
 }
 
-function fooGalleryRestImages($object) {
-  $id = $object['id']; 
-  if ($id) {
-  	$meta = get_post_meta($id, 'foogallery_attachments', true);
-  	if (!empty($meta)) {
-      return array_filter($meta);
-  	}
+function fooGalleryRestImages($object) { 
+  if ($object) {
+    $id = $object['id']; 
+    if ($id) {
+      $meta = get_post_meta($id, 'foogallery_attachments', true);
+  	  if (!empty($meta)) {
+        return array_filter($meta);
+  	  }
+    }
   }
   
   return [];

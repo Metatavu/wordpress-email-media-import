@@ -25,6 +25,9 @@
       "foogallery": {
         
       },
+      "foogallery-rest": {
+        "file": "foogallery-rest"
+      },
       "Basic-Auth-master": {
         "url": "https://github.com/WP-API/Basic-Auth/archive/master.zip"
       },
