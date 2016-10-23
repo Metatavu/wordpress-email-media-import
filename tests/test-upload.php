@@ -165,7 +165,6 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	$client = new GuzzleHttp\Client();
   	$response = $client->post("http://localhost:1234/wp-json/wp/v2/pages", [
   	  "json" => [
-	    "type" => "page",
 	    "title" => $title,
 	    "content" => $content,
 	    "status" => "publish"
