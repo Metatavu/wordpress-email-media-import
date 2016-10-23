@@ -33,6 +33,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
    public function tearDownTest() {
    	 $this->deletePages($this->listPages());
      $this->deleteFooGalleries($this->listFooGalleries());
+     $this->deleteMedias($this->listMedias());
    }
   
   /**
