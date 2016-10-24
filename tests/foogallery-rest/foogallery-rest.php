@@ -40,7 +40,8 @@ function fooGalleryRestImages($object) {
 add_action('rest_api_init', function () {
   $postType = 'foogallery';
   register_rest_field($postType, "images", array(
-    'get_callback' => 'fooGalleryRestImages'
+    'get_callback' => 'fooGalleryRestImages',
+  	'update_callback' => null
   ));
 });
 
