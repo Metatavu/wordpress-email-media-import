@@ -173,7 +173,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	]);
   	
   	$this->assertNotNull($response);
-  	$this->assertEquals(200, $response->getStatusCode());
+  	$this->assertHttpOk($response->getStatusCode());
   	
   	$body = $response->getBody();
   	$this->assertNotNull($body);
@@ -200,7 +200,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	  "auth" => ["admin", "password"]
   	]);
   			
-  	$this->assertEquals(200, $response->getStatusCode());
+  	$this->assertHttpOk($response->getStatusCode());
   }
 
   private function deletePages($pages) {
@@ -221,8 +221,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	]);
   	 
   	$this->assertNotNull($response);
-  	$this->assertGreaterThanOrEqual(200, $response->getStatusCode());
-  	$this->assertLessThanOrEqual(299, $response->getStatusCode());
+  	$this->assertHttpOk($response->getStatusCode());
   	 
   	$body = $response->getBody();
   	$this->assertNotNull($body);
@@ -246,7 +245,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	  "auth" => ["admin", "password"]
   	]);
   			
-  	$this->assertEquals(200, $response->getStatusCode());
+  	$this->assertHttpOk($response->getStatusCode());
   }
   
   private function deleteFooGalleries($fooGalleries) {
@@ -294,7 +293,7 @@ class UploadTest extends PHPUnit_Framework_TestCase {
   	  	"auth" => ["admin", "password"]
   	  ]);
   	  
-  	  $this->assertEquals(200, $response->getStatusCode());
+  	  $this->assertHttpOk($response->getStatusCode());
   	}
   }
   
@@ -381,5 +380,9 @@ class UploadTest extends PHPUnit_Framework_TestCase {
       "size" => $imageSize
     ];
   }
-  
+
+  private function assertHttpOk($statusCode) {
+  	$this->assertGreaterThanOrEqual(200, $statusCode);
+  	$this->assertLessThanOrEqual(299, $statusCode);
+  }
 }
