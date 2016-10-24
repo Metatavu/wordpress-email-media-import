@@ -26,6 +26,11 @@ require_once("text-processor.php");
   
 function emailMediaImportShortCode($attrs) {
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  	if (empty($_POST['domain'])) {
+  	  // Not a Mailgun webhook request
+  	  return;
+  	}
+  	
   	$fooGalleryId = null;
   	if ($attrs) {
   	  $fooGalleryId = array_key_exists("foo-gallery-id", $attrs) ? $attrs['foo-gallery-id'] : null;
