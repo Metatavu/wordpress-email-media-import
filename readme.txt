@@ -2,8 +2,8 @@
 Contributors: metatavu
 Tags: mailgun, media, email
 Requires at least: 4.6
-Tested up to: 4.6
-Stable tag: 0.0.3
+Tested up to: 4.6.1
+Stable tag: 0.7
 License: GPLv2 or later.
 
 == Description ==
@@ -29,6 +29,13 @@ Key Features:
   * Create new route in Mailgun administration panel, check the "store and notify" box and type in https://www.mywordpress.com/mailgun-media-import as notification address
 
 == Changelog ==
+
+= 0.7 =
+* Refactored to use tags within the contents instead of subject and content to determine image title and description
+* Added support for specifying target galleries by tags
+
+= 0.6 =
+* Relased into Wordpress Codex
 
 = 0.5 =
 * Refactored to use shortcodes instead of path override
