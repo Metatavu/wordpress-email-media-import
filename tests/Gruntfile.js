@@ -126,17 +126,6 @@ module.exports = function(grunt) {
         "options": {
           "all": true
         }
-      },
-      "import-page": {
-        "path": config.wordpress.path,
-        "command": "post",
-        "subcommand": "create",
-        "options": {
-          "post_type": "page",
-          "post_title": "import",
-          "post_content": "[email_media_import]",
-          "post_status": "publish"
-        }
       }
     },
     "shell": {
@@ -165,7 +154,7 @@ module.exports = function(grunt) {
     },
     'bgShell': {
       "start-wordpress-server-background": {
-        cmd: "php -d xdebug.remote_port=2345 -e -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
+        cmd: "php -d error_log=/tmp/php_errors.log -S " + config.wordpress.site.url + " & echo $! > /tmp/wordpress-server.pid",
         bg: true,
         execOpts: {
           cwd: config.wordpress.path
@@ -197,6 +186,5 @@ module.exports = function(grunt) {
   grunt.registerTask("stop-server", ["bgShell:kill-wordpress-server-background"]);
   grunt.registerTask("uninstall-wordpress", ["clean:uninstall-wordpress"]);
   grunt.registerTask("drop-database", ["mustache_render:database-drop", "mysqlrunfile:database-drop"]);
-  grunt.registerTask("mock-data", ["wp-cli:import-page"]);
   
 };

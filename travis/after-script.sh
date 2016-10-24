@@ -1,4 +1,4 @@
 #/bin/bash
 
-cat /tmp/coverage.xml
-vendor/satooshi/php-coveralls/bin/coveralls
+echo Error log
+cat /tmp/php_errors.log

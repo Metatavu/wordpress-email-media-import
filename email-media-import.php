@@ -26,6 +26,11 @@ require_once("text-processor.php");
   
 function emailMediaImportShortCode($attrs) {
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  	if (empty($_POST['domain'])) {
+  	  // Not a Mailgun webhook request
+  	  return;
+  	}
+  	
   	$fooGalleryId = null;
   	if ($attrs) {
   	  $fooGalleryId = array_key_exists("foo-gallery-id", $attrs) ? $attrs['foo-gallery-id'] : null;
@@ -38,6 +43,7 @@ function emailMediaImportShortCode($attrs) {
     $maxHeight = $options && $options['maxHeight'] ? $options['maxHeight'] : 1280;
     $titleTag = $options && $options['titleTag'] ? $options['titleTag'] : 'title';
     $descriptionTag = $options && $options['descriptionTag'] ? $options['descriptionTag'] : 'description';
+    $galleryTag = $options && $options['galleryTag'] ? $options['galleryTag'] : 'gallery';
     
     // Validate that timestamp, token and signature are present and in correct format
     
@@ -92,7 +98,7 @@ function emailMediaImportShortCode($attrs) {
     // Subject and body may be empty but they should not contain any html
     
     $bodyPlain = sanitize_text_field($_POST['body-plain']);
-    $textProcessor = new Metatavu\EmailMediaImport\TextProcessor($bodyPlain, $titleTag, $descriptionTag);
+    $textProcessor = new Metatavu\EmailMediaImport\TextProcessor($bodyPlain, $titleTag, $descriptionTag, $galleryTag);
     
     // Import media into media library
 
@@ -110,6 +116,13 @@ function emailMediaImportShortCode($attrs) {
     if ($fooGalleryId) {
       $fooGalleryImporter = new Metatavu\EmailMediaImport\FooGalleryImporter();
       $fooGalleryImporter->importImage($fooGalleryId, $importtedImageId);
+    } else {
+      // If gallery is not explicitly defined we check whether request contains them in body tags
+      $galleryTitles = $textProcessor->getGalleries();
+      if (!empty($galleryTitles)) {
+        $fooGalleryImporter = new Metatavu\EmailMediaImport\FooGalleryImporter();
+        $fooGalleryImporter->importByTitles($galleryTitles, $importtedImageId);
+      }
     }
   }
 }
